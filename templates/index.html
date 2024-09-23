@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Tracker by TRHACKNON - Suivi de Localisation en Temps Réel</title>
+
+    <!-- Métatags pour SEO -->
+    <meta name="description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker. Obtenez des informations détaillées sur la géolocalisation.">
+    <meta name="keywords" content="IP Tracker, localisation IP, suivi IP, géolocalisation, sécurité enfant, outil de suivi, parents, outil web, tracking IP">
+    <meta name="author" content="Trhacknon">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph pour les réseaux sociaux -->
+    <meta property="og:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+    <meta property="og:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+    <meta property="og:image" content="{{ url_for('static', filename='pic.png') }}">
+    <meta property="og:url" content="https://ipdar-trkn.replit.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+    <meta name="twitter:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='pic.png') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>IP Tracker in RealTime</h1>
+        <img src="{{ url_for('static', filename='bug.svg') }}" alt="Bug Icon">
+        <form method="POST">
+            <label for="ip">Entrez l'IP de la cible a geolocaliser :</label>
+            <input type="text" id="ip" name="ip" required>
+            <button type="submit">Suivre</button>
+        </form>
+
+        <a href="{{ url_for('trackings') }}">Voir les IPs suivies</a>
+        <div class="explanation">
+            <h2>À propos de l'outil IP Tracker</h2>
+            <p>IP Tracker est une application web en temps réel permettant de suivre la géolocalisation d'adresses IP. Cet outil est parfait pour les parents qui souhaitent connaître l'emplacement de leurs enfants à tout moment grâce à la technologie de géolocalisation IP. Voici ce que notre outil propose :</p>
+            <ul>
+                <li><strong>Base de données locale :</strong> Toutes les IP suivies sont stockées dans une base de données SQLite pour un accès facile et la persistance des données.</li>
+                <li><strong>Cartes en temps réel :</strong> Visualisez les mouvements des IPs suivies sur des cartes interactives mises à jour toutes les 5 secondes.</li>
+                <li><strong>Notifications Telegram :</strong> Recevez des notifications en temps réel via Telegram lorsque la localisation d'une IP change.</li>
+                            <li><strong>Suivi détaillé :</strong> Obtenez des informations détaillées sur la géolocalisation, incluant la ville, la région et le pays.</li>
+                        </ul>
+                        <p>Utiliser notre outil est simple : entrez simplement l'adresse IP que vous souhaitez suivre, et nous faisons le reste. Vous verrez en temps réel la localisation géographique de l'IP, et vous recevrez des notifications instantanées si la localisation change.</p>
+                    </div>
+
+        {% if city and region and country %}
+        <div class="location-info">
+            <p>IP localisée à : {{ city }}, {{ region }}, {{ country }}</p>
+        </div>
+        {% endif %}
+
+        {% if lat and lon %}
+        <div id="status">
+            <i id="spinner" class="fa fa-spinner fa-spin" style="display: none;"></i>
+            <span id="status-text"></span>
+        </div>
+        <div id="map"></div>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script>
+            // Passe les variables Python à JavaScript
+            var lat = {{ lat }};
+            var lon = {{ lon }};
+            initializeMap(lat, lon);
+
+            var spinner = document.getElementById('spinner');
+            var statusText = document.getElementById('status-text');
+
+            function updateLocation() {
+                spinner.style.display = 'block';
+                statusText.textContent = 'Mise à jour...';
+
+                fetch(`/api/location/${ip}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        spinner.style.display = 'none';
+                        statusText.textContent = 'Dernière mise à jour : ' + new Date().toLocaleTimeString();
+
+                        if (data.latitude && data.longitude) {
+                            var newLat = data.latitude;
+                            var newLon = data.longitude;
+                            map.setView([newLat, newLon], 13);
+                            marker.setLatLng([newLat, newLon]).update();
+                        }
+                    });
+            }
+
+            // Actualise la localisation toutes les 5 secondes
+            setInterval(updateLocation, 5000);
+            updateLocation(); // Appel initial pour charger la carte
+        </script>
+        {% endif %}
+    </div>
+</body>
+</html>

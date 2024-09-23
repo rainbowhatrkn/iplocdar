@@ -1,0 +1,245 @@
+/* Général */
+body {
+    background-color: #121212; /* Fond sombre */
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Permet de centrer verticalement et horizontalement */
+    height: 100vh;
+    overflow-x: hidden; /* Empêche le débordement horizontal */
+}
+
+/* Conteneur général */
+.container {
+    background-color: #222; /* Fond de la boîte plus sombre */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8); /* Ombre légère pour un effet de profondeur */
+    text-align: center;
+    max-width: 90%; /* Ajuste la largeur maximale du conteneur */
+    width: 100%;
+    overflow-x: auto; /* Ajoute un défilement horizontal si nécessaire */
+}
+
+/* Titres */
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ff00ff; /* Couleur vive pour le titre */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #00ffea; 
+}
+
+/* Formulaire */
+form {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+/*    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);*/
+    border-image-slice: 1;
+}
+
+label {
+    color: #00ffea; /* Texte lumineux uniquement pour les labels */
+    font-size: 1.2em;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #00ffea; /* Bordure cyan */
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #333;
+    color: #fff;
+    outline: none;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #444; /* Fond sombre du bouton */
+    color: #ff00ff; /* Texte coloré pour contraste */
+    font-size: 1.1em;
+    border: 2px solid #ff00ff; /* Bordure rose */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+}
+
+button:hover {
+    background-color: #333; /* Légère modification au survol */
+}
+
+/* Informations sur la localisation */
+.location-info {
+    font-size: 1.3em;
+    color: #ffea00; /* Couleur pour les informations importantes */
+    margin-top: 20px;
+    border-bottom: 2px solid #ff00ff;
+}
+
+/* Tableau des IPs */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: auto; /* Permet aux colonnes de s'adapter */
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #00ffea; /* Bordures des cellules en cyan */
+    word-wrap: break-word; /* Empêche le débordement de texte */
+}
+
+th {
+    background-color: #333;
+    color: #00ffea; /* Texte lumineux pour les titres de colonnes */
+}
+
+td {
+    background-color: #222;
+    color: #fff; /* Couleur du texte standard dans les cellules */
+}
+
+/* Lien dans le tableau */
+td a {
+    color: #ff00ff; /* Couleur du lien dans le tableau */
+    text-decoration: none;
+}
+
+td a:hover {
+    color: #ffea00; /* Couleur au survol du lien */
+}
+
+/* Carte */
+#map {
+    height: 400px;
+    margin-top: 20px;
+    border: 2px solid #00ffea; /* Bordure colorée autour de la carte */
+    border-radius: 10px;
+}
+
+/* Liens de navigation */
+a {
+    font-size: 1.2em;
+    color: #ff00ff; /* Texte coloré des liens */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #444; /* Fond sombre des boutons de lien */
+    border-radius: 5px;
+    border: 2px solid #ff00ff; /* Bordure rose autour des boutons de lien */
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+}
+
+a:hover {
+    background-color: #333;
+    color: #ffea00; /* Changement de couleur au survol */
+}
+
+/* Diversification des bordures */
+.table-responsive {
+    overflow-x: auto; /* Ajoute un défilement horizontal si nécessaire */
+}
+
+/* Styles supplémentaires pour améliorer la réactivité */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Réduit la taille des titres sur petits écrans */
+    }
+
+    input[type="text"], button {
+        font-size: 0.9em; /* Réduit la taille des boutons et champs de texte */
+    }
+
+    th, td {
+        font-size: 0.9em; /* Réduit la taille du texte dans le tableau */
+    }
+}
+
+/* Ajout de couleurs variées pour les bordures */
+th {
+    border: 2px solid #ff00ff; /* Bordure rose pour les en-têtes */
+}
+
+td:nth-child(1) {
+    border: 2px solid #00ffea; /* Bordure cyan pour la colonne IP */
+}
+
+td:nth-child(2) {
+    border: 2px solid #ffff00; /* Bordure jaune pour la colonne Localisation */
+}
+
+td:nth-child(3) {
+    border: 2px solid #00ff00; /* Bordure verte pour la colonne Ville */
+}
+
+td:nth-child(4) {
+    border: 2px solid #ff8000; /* Bordure orange pour la colonne Région */
+}
+
+td:nth-child(5) {
+    border: 2px solid #ff0000; /* Bordure rouge pour la colonne Pays */
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 3em;
+    color: #ff0000; /* Couleur du texte pour l'état */
+    display: flex;
+    align-items: center;
+}
+
+#spinner {
+    margin-right: 5px;
+}
+
+.explanation {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #222; /* Fond sombre */
+    border-radius: 10px;
+    color: #00ffea; /* Texte lumineux */
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.5); /* Ombre entourée d'une teinte fluorescente */
+    font-family: 'Arial', sans-serif;
+    text-align: justify;
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+}
+
+.explanation h2 {
+    color: #ff00ff; /* Couleur vive des titres */
+}
+
+.explanation ul {
+    margin-left: 20px;
+}
+
+.explanation ul li {
+    margin-bottom: 10px;
+}
+
+.logo {
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    border: 1px solid transparent;
+/*    border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);*/
+    border-image-slice: 1;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IP Tracking by TRHACKNON - IP Suivies</title>
+
+        <!-- Métatags pour SEO -->
+        <meta name="description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker. Obtenez des informations détaillées sur la géolocalisation.">
+        <meta name="keywords" content="IP Tracker, localisation IP, suivi IP, géolocalisation, sécurité enfant, outil de suivi, parents, outil web, tracking IP">
+        <meta name="author" content="Trhacknon">
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph pour les réseaux sociaux -->
+        <meta prjjoperty="og:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+        <meta property="og:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+        <meta property="og:image" content="{{ url_for('static', filename='pic.png') }}">
+        <meta property="og:url" content="https://ipdar-trkn.replit.app/">
+        <meta property="og:type" content="website">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+        <meta name="twitter:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+        <meta name="twitter:image" content="{{ url_for('static', filename='pic.png') }}">
+
+        <!-- Favicon -->
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+        <!-- Styles CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    </head>
+<body>
+    <div class="container">
+        <h1>Liste des IPs suivies</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>Localisation</th>
+                    <th>Ville</th>
+                    <th>Région</th>
+                    <th>Pays</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tracking in trackings %}
+                <tr>
+                    <td><a href="{{ url_for('show_tracking', ip=tracking[1]) }}">{{ tracking[1] }}</a></td>
+                    <td>{{ tracking[2] }}</td>
+                    <td>{{ tracking[3] }}</td>
+                    <td>{{ tracking[4] }}</td>
+                    <td>{{ tracking[5] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

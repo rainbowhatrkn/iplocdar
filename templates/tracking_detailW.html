@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Détails de l'IP {{ ip }}</title>
+        <!-- Métatags pour SEO -->
+        <meta name="description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker. Obtenez des informations détaillées sur la géolocalisation.">
+        <meta name="keywords" content="IP Tracker, localisation IP, suivi IP, géolocalisation, sécurité enfant, outil de suivi, parents, outil web, tracking IP">
+        <meta name="author" content="Trhacknon">
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph pour les réseaux sociaux -->
+        <meta property="og:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+        <meta property="og:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+        <meta property="og:image" content="{{ url_for('static', filename='pic.png') }}">
+        <meta property="og:url" content="https://ipdar-trkn.replit.app/">
+        <meta property="og:type" content="website">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="IP Tracker - Suivi de Localisation en Temps Réel">
+        <meta name="twitter:description" content="Suivez la localisation en temps réel de l'IP de votre enfant avec notre outil IP Tracker.">
+        <meta name="twitter:image" content="{{ url_for('static', filename='pic.png') }}">
+
+        <!-- Favicon -->
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+        <!-- Styles CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    </head>
+<body>
+    <div class="container">
+        <h1>Détails de l'IP : {{ ip }}</h1>
+        <div class="location-info">
+            <p>Localisation : {{ city }}, {{ region }}, {{ country }}</p>
+        </div>
+        <!-- Page HTML omises pour la concision -->
+        <div id="status">
+            <i id="spinner" class="fa fa-spinner fa-spin" style="display: none;"></i>
+            <span id="status-text"></span>
+        </div>
+        <div id="map"></div>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <script>
+            var lat = {{ lat }};
+            var lon = {{ lon }};
+            var ip = "{{ ip }}";
+            var map = initializeMap(lat, lon);
+            var marker = L.marker([lat, lon]).addTo(map).bindPopup('Localisation de l\'enfant').openPopup();
+            var spinner = document.getElementById('spinner');
+            var statusText = document.getElementById('status-text');
+
+            function updateLocation() {
+                spinner.style.display = 'block';
+                statusText.textContent = 'Mise à jour...';
+
+                fetch(`/api/location/${ip}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        spinner.style.display = 'none';
+                        statusText.textContent = 'Dernière mise à jour : ' + new Date().toLocaleTimeString();
+
+                        if (data.latitude && data.longitude) {
+                            var newLat = data.latitude;
+                            var newLon = data.longitude;
+                            map.setView([newLat, newLon], 13);
+                            marker.setLatLng([newLat, newLon]).update();
+                        }
+                    });
+            }
+
+            // Actualise la localisation toutes les 5 secondes
+            setInterval(updateLocation, 5000);
+            updateLocation(); // Appel initial pour charger la carte
+        </script>
+        <a href="{{ url_for('trackings') }}">Retour à la liste des IPs suivies</a>
+</body>
+</html>

@@ -1,0 +1,49 @@
+            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 16 16" class="bi bi-bug fa-fade fa-shake">
+                <!-- Définition du dégradé multicolore -->
+                <defs>
+                    <linearGradient id="multicolorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color: red; stop-opacity: 1" />
+                        <stop offset="25%" style="stop-color: orange; stop-opacity: 1" />
+                        <stop offset="50%" style="stop-color: yellow; stop-opacity: 1" />
+                        <stop offset="75%" style="stop-color: limegreen; stop-opacity: 1" />
+                        <stop offset="100%" style="stop-color: blue; stop-opacity: 1" />
+                    </linearGradient>
+
+                    <!-- Définition d'un effet d'ombre -->
+                    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="rgba(0,0,0,0.5)" />
+                    </filter>
+
+                    <!-- Définition du masque -->
+                    <mask id="maskAnonymous">
+                        <g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                            <g transform="scale(5.12,5.12)">
+                                <path class="hat-path" d="M25,2c-9.94141,0 -18,2.6875 -18,6c0,0 0,8.08203 0,17c0,5.08203 5.41797,19.08203 18,22c12.58203,-2.91797 18,-16.91797 18,-22c0,-8.91797 0,-17 0,-17c0,-3.3125 -8.05859,-6 -18,-6zM17,11c3.4375,0 5.19531,3.07422 5.5625,3.4375c0.58594,0.58594 0.58594,1.53906 0,2.12109c-0.58594,0.58594 -1.53906,0.58594 -2.12109,0c-0.41406,-0.41016 -1.75391,-3.55859 -4.44141,-3.55859c-1.38672,0 -3.04687,0.64063 -5,2c1.85547,-3.12109 4.00391,-4 6,-4zM20,18.5c-0.91797,0.90625 -2.35937,1.5 -4,1.5c-1.64062,0 -3.08203,-0.59375 -4,-1.5c0.91797,-0.90625 2.35938,-1.5 4,-1.5c1.64063,0 3.08203,0.59375 4,1.5zM27,43l-2,2l-2,-2v-5h4zM34,34h-7l-2,-2l-2,2h-7l-5,-8l6,5h4l3,-3h2l3,3h4l6,-5zM30,18.5c0.91797,-0.90625 2.35938,-1.5 4,-1.5c1.64063,0 3.08203,0.59375 4,1.5c-0.91797,0.90625 -2.35937,1.5 -4,1.5c-1.64062,0 -3.08203,-0.59375 -4,-1.5zM34,13c-2.6875,0 -4.02734,3.14844 -4.4375,3.5625c-0.58594,0.58594 -1.53906,0.58594 -2.12109,0c-0.58594,-0.58594 -0.58594,-1.53906 0,-2.12109c0.36328,-0.36719 2.12109,-3.44141 5.55859,-3.44141c1.99609,0 4.14453,0.87891 6,4c-1.95312,-1.35937 -3.61328,-2 -5,-2z" style="fill:url(#grad1); animation: colorChange 2s infinite, blink 2s infinite alternate; transform-origin: center;"></path>
+                            </g>
+                        </g>
+                    </mask>
+                </defs>
+
+                <!-- Application du masque comme arrière-plan -->
+                <rect x="0" y="0" width="16" height="16" fill="none" mask="url(#maskAnonymous)" />
+
+                <!-- Application du dégradé au remplissage avec contours épais noirs -->
+                <path d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A5 5 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A5 5 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623M4 7v4a4 4 0 0 0 3.5 3.97V7zm4.5 0v7.97A4 4 0 0 0 12 11V7zM12 6a4 4 0 0 0-1.334-2.982A3.98 3.98 0 0 0 8 2a3.98 3.98 0 0 0-2.667 1.018A4 4 0 0 0 4 6z"
+                      stroke="black"
+                      stroke-width="0.5"
+                      fill="url(#multicolorGradient)"
+                      filter="url(#shadow)" />
+
+                <!-- Ajouter des initiales en texte -->
+                <text x="8" y="12" font-family="Arial" font-size="1" fill="blue" text-anchor="middle" font-weight="bold">
+                    IP Tracking
+                </text>
+                <text x="8" y="14" font-family="Arial" font-size="1" fill="red" text-anchor="middle" font-weight="bold">
+                    Tool By TRKN
+</text>
+
+                <!-- Ajouter des formes décoratives -->
+                <circle cx="9.5" cy="4" r=".5" stroke="black" stroke-width="0.5" fill="blue" opacity="0.9" />
+                <circle cx="6.5" cy="4" r=".5" stroke="black" stroke-width="0.5" fill="blue" opacity="0.9" />
+                <circle cx="8" cy="8" r="1.5" stroke="black" stroke-width="0.5" fill="red" opacity="0.9" />
+            </svg>
